@@ -1,26 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace MasterChefe.Mobile.Model
 {
     public class RecipeModel
     {
-
+        public int Id { get; set; }
+        [JsonProperty("title")]
         public string Title { get; set; }
 
+        [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("wayOfPrepare")]
         public string WayOfPrepare { get; set; }
 
+        [JsonProperty("ingredients")]
         public ICollection<IngredienteModel> Ingredients { get; set; }
 
+        [JsonProperty("image")]
         public string Image { get; set; }
 
-        public string Photo
-        {
-            get
-            {
-                return $"imagem10.jpg".Replace(" ", "");
-            }
-        }
+        public Image Photo { get; set; }
+ 
     }
 }

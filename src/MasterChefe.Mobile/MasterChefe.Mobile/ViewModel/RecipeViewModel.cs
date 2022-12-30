@@ -1,7 +1,11 @@
-﻿using MasterChefe.Mobile.Model;
+﻿using MasterChefe.Mobile.Initillizer;
+using MasterChefe.Mobile.Interface;
+using MasterChefe.Mobile.Model;
 using MasterChefe.Mobile.Services;
 using MasterChefe.Mobile.View;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -9,6 +13,7 @@ namespace MasterChefe.Mobile.ViewModel
 {
     public class RecipeViewModel : BaseViewModel
     {
+        private IRecipeService recipeService;
         private ObservableCollection<RecipeModel> model;
         public ObservableCollection<RecipeModel> Model
         {
@@ -23,9 +28,9 @@ namespace MasterChefe.Mobile.ViewModel
         }
         public RecipeViewModel()
         {
-            var recipeService = new RecipeService();
-            var dados = recipeService.GetAll().Result;
-            Model = new ObservableCollection<RecipeModel>(dados);
+            var initializer = new ContainerInitializer();
+            recipeService = initializer.recipeService;
+            Model = new ObservableCollection<RecipeModel>(recipeService.GetAll());
         }
 
         public ICommand OpenDetalheCommand => new Command<RecipeModel>(async (RecipeModel d) =>
@@ -33,5 +38,6 @@ namespace MasterChefe.Mobile.ViewModel
             var vm = new DetalhesViewModel(d);
             await App.Current.MainPage.Navigation.PushAsync(new DetalheView(vm));
         });
+
     }
 }

@@ -113,7 +113,7 @@
                 <Setter Property="Aspect" Value="AspectFill"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="Margin" Value="0,0,10,0"/>
+                <Setter Property="Margin" Value="10,10,10,10"/>
             </Style>
 
             <Style x:Key="DriverCircleImageProfile" TargetType="controls:CircleImage">
@@ -126,8 +126,18 @@
                 <Setter Property="BorderThickness" Value="5"/>
             </Style>
 
+        <Style x:Key="DriverCircleImageProfileDetalhe" TargetType="controls:CircleImage">
+            <Setter Property="WidthRequest" Value="500"/>
+            <Setter Property="HeightRequest" Value="200"/>
+            <Setter Property="Aspect" Value="AspectFill"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="BorderColor" Value="White"/>
+            <Setter Property="BorderThickness" Value="5"/>
+        </Style>
 
-            <Style x:Key="FlagImage" TargetType="Image">
+
+        <Style x:Key="FlagImage" TargetType="Image">
                 <Setter Property="WidthRequest" Value="30"/>
                 <Setter Property="HeightRequest" Value="15"/>
                 <Setter Property="Aspect" Value="AspectFit"/>

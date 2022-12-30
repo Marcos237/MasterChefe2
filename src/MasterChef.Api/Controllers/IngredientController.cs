@@ -9,7 +9,7 @@ namespace MasterChef.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class IngredientController : ControllerBase
     {
         private readonly IIngredientAppService _ingredientAppService;

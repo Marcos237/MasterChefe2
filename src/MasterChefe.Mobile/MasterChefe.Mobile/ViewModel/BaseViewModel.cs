@@ -28,11 +28,6 @@ namespace MasterChefe.Mobile.ViewModel
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
-
-
-
-
-
         protected bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyName = "", Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))

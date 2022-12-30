@@ -7,8 +7,8 @@
 
     <CollectionView 
                       ItemsSource="{Binding Model}"
-                      SelectionChangedCommand="{Binding OpenDetalheCommand}"
-                      SelectedItem="{Binding SelectedDriver}"
+        SelectionChangedCommand="{Binding OpenDetalheCommand}"
+                      SelectedItem="{Binding SelectedModel}"
                       SelectionChangedCommandParameter="{Binding SelectedModel}"                         
                       SelectionMode="Single">
         <CollectionView.Header>
@@ -35,16 +35,13 @@
 
 
                     <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
-                        <controls:CircleImage Source="{Binding Photo}" Style="{StaticResource DriverCircleImage}"/>
+                        <controls:CircleImage Source="{Binding Photo.Source}" Style="{StaticResource DriverCircleImage}"/>
                     </StackLayout>
 
 
                     <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End">
                         <Label Text="{Binding Title}" Style="{StaticResource PointsLabel}"/>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="3" VerticalOptions="Center" HorizontalOptions="End">
-                        <Label Text="{Binding Description}" Style="{StaticResource PointsLabel}"/>
+                        <Label Text="{Binding Description}" Style="{StaticResource TeamNameLabel}"/>
                     </StackLayout>
 
                     <BoxView HeightRequest="1" Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource SeperatorColor}"/>
