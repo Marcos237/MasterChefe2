@@ -44,7 +44,7 @@ namespace MasterChefe.Mobile.Model
 
         public async void OnSubmit()
         {
-            if (_email != "login@email.com" || _password != "123456")
+            if (_email != "a" || _password != "a")
             {
                 InvalidLoginNotification();
                 this.Email = string.Empty;
@@ -53,12 +53,12 @@ namespace MasterChefe.Mobile.Model
                 return;
             }
 
-            Application.Current.MainPage = new RecipeView();
+            Application.Current.MainPage = new AppShell();
         }
 
         public async void OnRegister()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new RegisterView());
+            await App.Current.MainPage.Navigation.PushAsync(new RegisterView());
         }
     }
 }
