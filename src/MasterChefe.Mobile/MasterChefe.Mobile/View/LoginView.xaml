@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MasterChefe.Mobile.View.LoginView">
+             x:Class="MasterChefe.Mobile.View.LoginView"
+             Title="Login">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+        <StackLayout Orientation="Vertical" Padding="30" Spacing="40" BackgroundColor="White">
             <BoxView HeightRequest="10"/>
-            <Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
+            <Label Text="Digite seu email e senha:" FontSize="20" FontAttributes="Bold"/>
             <Frame BackgroundColor="#BF043055" HasShadow="False">
                 <StackLayout Orientation="Vertical" Spacing="10">
                     <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email" 
@@ -21,6 +22,13 @@
             <Button Command="{Binding SubmitCommand}" Text="Login" TextColor="White"
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"
                     BackgroundColor="#088da5" />
+
+            <Label Text="Não tem conta? efetue seu cadastro!" TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

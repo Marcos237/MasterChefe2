@@ -1,25 +1,22 @@
-﻿using MasterChefe.Mobile.View;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MasterChefe.Mobile.Model
 {
-    public class LoginModel : INotifyPropertyChanged
+    public class RegisterModel : INotifyPropertyChanged
     {
-        public LoginModel()
+        public RegisterModel()
         {
             SubmitCommand = new Command(OnSubmit);
-            RegisterCommand = new Command(OnRegister);
+            LoginCommand = new Command(OnLogin);
         }
-
-        public Action InvalidLoginNotification;
+        public Action InvalidPasswordNotification;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public ICommand SubmitCommand { protected set; get; }
-        public ICommand RegisterCommand { protected set; get; }
-
+        public ICommand LoginCommand { protected set; get; }
 
         private string _email;
         public string Email
@@ -42,23 +39,35 @@ namespace MasterChefe.Mobile.Model
             }
         }
 
+        private string _confirmPassword;
+        public string ConfirmPassword
+        {
+            get => _confirmPassword;
+            set
+            {
+                _confirmPassword = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ConfirmPassword"));
+            }
+        }
+
         public async void OnSubmit()
         {
-            if (_email != "login@email.com" || _password != "123456")
+            if (!_password.Equals(_confirmPassword))
             {
-                InvalidLoginNotification();
+                InvalidPasswordNotification();
                 this.Email = string.Empty;
                 this.Password = string.Empty;
+                this.ConfirmPassword = string.Empty;
 
                 return;
             }
 
-            Application.Current.MainPage = new RecipeView();
         }
 
-        public async void OnRegister()
+        public async void OnLogin()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new RegisterView());
+            await App.Current.MainPage.Navigation.PopAsync(true);
+
         }
     }
 }
