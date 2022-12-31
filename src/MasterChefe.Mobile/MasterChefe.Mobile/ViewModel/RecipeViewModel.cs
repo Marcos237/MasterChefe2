@@ -13,7 +13,6 @@ namespace MasterChefe.Mobile.ViewModel
 {
     public class RecipeViewModel : BaseViewModel
     {
-        private IRecipeService recipeService;
         private ObservableCollection<RecipeModel> model;
         public ObservableCollection<RecipeModel> Model
         {
@@ -21,17 +20,28 @@ namespace MasterChefe.Mobile.ViewModel
             set { SetProperty(ref model, value); }
         }
         private RecipeModel selectedModel;
+        private RecipeModel selectedModelUpdate;
         public RecipeModel SelectedModel
         {
             get { return selectedModel; }
             set { SetProperty(ref selectedModel, value); }
         }
+        public RecipeModel SelectedModelUpdate
+        {
+            get { return selectedModelUpdate; }
+            set { SetProperty(ref selectedModelUpdate, value); }
+        }
         public RecipeViewModel()
         {
-            var initializer = new ContainerInitializer();
-            recipeService = initializer.recipeService;
             Model = new ObservableCollection<RecipeModel>(recipeService.GetAll());
         }
+
+
+        public ICommand OpenDetalheCommandUpdate => new Command<RecipeModel>(async (RecipeModel d) =>
+        {
+            var view = new AtualizaRecipeViewModel(d);
+            await App.Current.MainPage.Navigation.PushAsync(new AtualizaRecipeView(view));
+        });
 
         public ICommand OpenDetalheCommand => new Command<RecipeModel>(async (RecipeModel d) =>
         {

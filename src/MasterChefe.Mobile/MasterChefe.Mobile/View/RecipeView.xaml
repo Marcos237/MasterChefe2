@@ -5,6 +5,7 @@
              x:Class="MasterChefe.Mobile.View.RecipeView"
              Title="Receitas">
 
+
     <CollectionView 
                       ItemsSource="{Binding Model}"
         SelectionChangedCommand="{Binding OpenDetalheCommand}"

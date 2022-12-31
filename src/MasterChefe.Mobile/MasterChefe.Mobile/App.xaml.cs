@@ -8,7 +8,8 @@ namespace MasterChefe.Mobile
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new RecipeView());
+            MainPage = new AppShell();
+
         }
 
         protected override void OnStart()
