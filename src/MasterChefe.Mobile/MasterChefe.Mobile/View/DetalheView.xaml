@@ -15,7 +15,7 @@
                 </StackLayout>
             </Grid>
 
-            <Label Text="Ingredietes" Margin="10,80, 0,0" Style="{StaticResource RaceNameLabel}"/>
+            <Label Text="Ingredientes" Margin="10,80, 0,0" Style="{StaticResource RaceNameLabel}"/>
             <Grid ColumnSpacing="0" RowSpacing="0"  >
 
                 <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End">
@@ -40,7 +40,7 @@
                                     </StackLayout>
 
                                     <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End">
-                                        <Label Text="Quantridade" Style="{StaticResource TableTextLabel}"/>
+                                        <Label Text="Quantidade" Style="{StaticResource TableTextLabel}"/>
                                         <Label Text="{Binding Quantity}" />
                                     </StackLayout>
 
