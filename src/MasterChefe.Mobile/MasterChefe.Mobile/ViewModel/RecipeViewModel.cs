@@ -36,7 +36,7 @@ namespace MasterChefe.Mobile.ViewModel
         public ICommand OpenDetalheCommand => new Command<RecipeModel>(async (RecipeModel d) =>
         {
             var vm = new DetalhesViewModel(d);
-            await App.Current.MainPage.Navigation.PushAsync(new DetalheView(vm));
+            await Application.Current.MainPage.Navigation.PushAsync(new DetalheView(vm));
         });
 
     }
