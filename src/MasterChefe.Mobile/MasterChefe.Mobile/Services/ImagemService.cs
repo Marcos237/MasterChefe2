@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using System.Text;
 using Xamarin.Forms;
 
 namespace MasterChefe.Mobile.Services
@@ -55,5 +57,27 @@ namespace MasterChefe.Mobile.Services
             }
             return itens;
         }
+        public bool SaveImage(ImagemModel imagem)
+        {
+            try
+            {
+                var client = service.GetClient();
+                var urlApi = service.GetUrl($"/api/Imagem");
+                var content = new StringContent(JsonConvert.SerializeObject(imagem), Encoding.UTF8, "application/json");
+                using (var cliente = client)
+                {
+                    var response = cliente.PostAsync(urlApi, content);
+                    if (response.Result.IsSuccessStatusCode)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
+

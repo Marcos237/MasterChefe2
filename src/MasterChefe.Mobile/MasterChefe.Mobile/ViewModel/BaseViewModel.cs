@@ -1,13 +1,26 @@
-﻿using System;
+﻿using MasterChefe.Mobile.Initillizer;
+using MasterChefe.Mobile.Interface;
+using MasterChefe.Mobile.Model;
+using MasterChefe.Mobile.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Xamarin.Forms;
 
 namespace MasterChefe.Mobile.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-
+        public IRecipeService recipeService;
+        public IImagemService imageService;
+        public BaseViewModel()
+        {
+            var initializer = new ContainerInitializer();
+            recipeService = initializer.recipeService;
+            imageService = initializer.imagemService;
+        }
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public bool IsNotBusy { get => !isBusy; }
 
         private bool isVisible;

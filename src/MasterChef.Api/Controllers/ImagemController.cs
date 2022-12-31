@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MasterChef.Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
+using System.Drawing.Imaging;
+
 
 
 namespace MasterChef.Api.Controllers
@@ -39,6 +43,28 @@ namespace MasterChef.Api.Controllers
             {
 
                 throw;
+            }
+
+        }
+
+        [ProducesResponseType(typeof(byte[]), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(byte[]), StatusCodes.Status500InternalServerError)]
+        [HttpPost]
+        public async Task<IActionResult> Post(Imagem imagem)
+        {
+            try
+            {
+                var path = configuration["filePah"].ToString();
+                var pathFull = $"{path}/{imagem.nameImage}";
+                MemoryStream ms = new MemoryStream(imagem.imagem);
+                var image = Image.FromStream(ms);
+                image.Save(pathFull);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
         }

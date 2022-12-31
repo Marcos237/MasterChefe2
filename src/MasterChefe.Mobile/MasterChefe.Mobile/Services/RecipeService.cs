@@ -1,12 +1,11 @@
-﻿using ImageCircle.Forms.Plugin.Abstractions;
-using MasterChefe.Mobile.Interface;
+﻿using MasterChefe.Mobile.Interface;
 using MasterChefe.Mobile.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using Xamarin.Forms;
+using System.Net.Http;
+using System.Text;
 
 namespace MasterChefe.Mobile.Services
 {
@@ -21,6 +20,55 @@ namespace MasterChefe.Mobile.Services
             this.service = service;
             this.ingredientesService = ingredientesService;
         }
+
+        public bool Atualiza(RecipeModel recipe)
+        {
+            try
+            {
+                var client = service.GetClient();
+                var url = service.GetUrl("/api/recipes");
+                var content = new StringContent(JsonConvert.SerializeObject(recipe), Encoding.UTF8, "application/json");
+                using (var cliente = client)
+                {
+                    cliente.Timeout = new TimeSpan(0, 0, 30);
+                    cliente.DefaultRequestHeaders.Clear();
+
+                    var response = cliente.PutAsync(url, content);
+                    if (response.Result.IsSuccessStatusCode)
+                    {
+                        if (response.Result.IsSuccessStatusCode)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool Delete(RecipeModel recipe)
+        {
+            var client = service.GetClient();
+            var url = service.GetUrl($"/api/recipes/{recipe.Id}");
+            using (var cliente = client)
+            {
+                var response = cliente.DeleteAsync(url);
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    if (response.Result.IsSuccessStatusCode)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            return false;
+        }
+
         public List<RecipeModel> GetAll()
         {
             var models = new List<RecipeModel>();
@@ -49,6 +97,36 @@ namespace MasterChefe.Mobile.Services
                 models = ingredientesService.MontarIngredientes(models);
             }
             return models;
+        }
+
+        public bool Salvar(RecipeModel recipe)
+        {
+            try
+            {
+                var client = service.GetClient();
+                var url = service.GetUrl("/api/recipes");
+                var content = new StringContent(JsonConvert.SerializeObject(recipe), Encoding.UTF8, "application/json");
+                using (var cliente = client)
+                {
+                    cliente.Timeout = new TimeSpan(0, 0, 30);
+                    cliente.DefaultRequestHeaders.Clear();
+
+                    var response = cliente.PostAsync(url, content);
+                    if (response.Result.IsSuccessStatusCode)
+                    {
+                        if (response.Result.IsSuccessStatusCode)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
