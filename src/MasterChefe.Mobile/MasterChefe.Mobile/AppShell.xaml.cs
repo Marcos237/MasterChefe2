@@ -16,5 +16,10 @@ namespace MasterChefe.Mobile.View
         {
             await Shell.Current.GoToAsync("//LoginPage");
         }
+
+        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new LoginView());
+        }
     }
 }

@@ -87,7 +87,25 @@
     <FlyoutItem Title="Detalhes das receitas" Icon="icon_feed.png">
         <ShellContent Route="DetalheRecipeView" ContentTemplate="{DataTemplate local:DetalheRecipeView}" />
     </FlyoutItem>
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <Grid
+            ColumnDefinitions="20,*"
+            Padding="20"
+            HeightRequest="30"
+            BackgroundColor="LightBlue">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
+                </Grid.GestureRecognizers>
+                <Label Grid.Column="1"
+       FontSize="17"
+       VerticalOptions="Center"
+       Text="Desconectar"></Label>
 
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
 
 
 
