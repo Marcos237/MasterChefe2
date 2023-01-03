@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 
 namespace MasterChefe.Mobile.Services
 {
@@ -15,6 +17,85 @@ namespace MasterChefe.Mobile.Services
         {
             this.service = service;
         }
+
+        public bool AtualizarIngrediente(IngredienteModel model)
+        {
+            try
+            {
+                var client = service.GetClient();
+                var url = service.GetUrl("/api/Ingredient");
+                var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                using (var cliente = client)
+                {
+                    cliente.Timeout = new TimeSpan(0, 0, 30);
+                    cliente.DefaultRequestHeaders.Clear();
+
+                    var response = cliente.PutAsync(url, content);
+                    if (response.Result.IsSuccessStatusCode)
+                    {
+                        if (response.Result.IsSuccessStatusCode)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool CadastrerIngrediente(IngredienteModel model)
+        {
+            try
+            {
+                var client = service.GetClient();
+                var url = service.GetUrl("/api/Ingredient");
+                var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                using (var cliente = client)
+                {
+                    cliente.Timeout = new TimeSpan(0, 0, 30);
+                    cliente.DefaultRequestHeaders.Clear();
+
+                    var response = cliente.PostAsync(url, content);
+                    if (response.Result.IsSuccessStatusCode)
+                    {
+                        if (response.Result.IsSuccessStatusCode)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool Deletar(int id)
+        {
+            var client = service.GetClient();
+            var url = service.GetUrl($"/api/Ingredient/{id}");
+            using (var cliente = client)
+            {
+                var response = cliente.DeleteAsync(url);
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    if (response.Result.IsSuccessStatusCode)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            return false;
+        }
+
         public List<IngredienteModel> GetById(int id)
         {
             var models = new List<IngredienteModel>();

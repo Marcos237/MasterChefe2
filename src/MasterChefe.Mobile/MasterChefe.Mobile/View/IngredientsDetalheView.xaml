@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             x:Class="MasterChefe.Mobile.View.DetalheRecipeView"
-             Title="Detalhe das receitas">
+             Title="Ingredientes"
+             x:Class="MasterChefe.Mobile.View.IngredientsDetalheView">
+
+
 
     <CollectionView 
                       ItemsSource="{Binding Model}"
-        SelectionChangedCommand="{Binding OpenDetalheCommandUpdate}"
-                      SelectedItem="{Binding SelectedModelUpdate}"
-                      SelectionChangedCommandParameter="{Binding SelectedModelUpdate}"                         
+        SelectionChangedCommand="{Binding OpenDetalheCommand}"
+                      SelectedItem="{Binding SelectedModel}"
+                      SelectionChangedCommandParameter="{Binding SelectedModel}"                         
                       SelectionMode="Single">
-
         <CollectionView.ItemTemplate>
             <DataTemplate>
 
@@ -26,16 +26,18 @@
                         <RowDefinition Height="1"/>
                     </Grid.RowDefinitions>
 
-
-                    <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
-                        <controls:CircleImage Source="{Binding Photo.Source}" Style="{StaticResource DriverCircleImage}"/>
+                    <StackLayout Grid.Column="0"  VerticalOptions="Center" HorizontalOptions="Start">
+                        <Label Text="Nome" Style="{StaticResource TableTextLabel}"/>
+                        <Label Text="{Binding Name}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Peso" Style="{StaticResource TableTextLabel}"/>
+                        <Label Text="{Binding Weight}" />
                     </StackLayout>
 
-
                     <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End">
-                        <Label Text="{Binding Title}" Style="{StaticResource PointsLabel}"/>
-                        <Label Text="{Binding Description}" Style="{StaticResource TeamNameLabel}"/>
-
+                        <Label Text="Quantidade" Style="{StaticResource TableTextLabel}"/>
+                        <Label Text="{Binding Quantity}" />
                     </StackLayout>
 
                     <BoxView HeightRequest="1" Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource SeperatorColor}"/>

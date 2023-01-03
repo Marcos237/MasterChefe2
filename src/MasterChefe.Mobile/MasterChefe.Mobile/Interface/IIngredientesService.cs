@@ -7,5 +7,8 @@ namespace MasterChefe.Mobile.Interface
     {
         List<IngredienteModel> GetById(int id);
         List<RecipeModel>  MontarIngredientes(List<RecipeModel> recipe);
+        bool  AtualizarIngrediente(IngredienteModel model);
+        bool  CadastrerIngrediente(IngredienteModel model);
+        bool  Deletar(int id);
     }
 }

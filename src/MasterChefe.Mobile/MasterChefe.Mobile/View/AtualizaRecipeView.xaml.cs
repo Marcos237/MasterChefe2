@@ -1,12 +1,7 @@
-﻿using Android.Graphics;
-using Android.Widget;
-using MasterChefe.Mobile.Model;
+﻿using MasterChefe.Mobile.Model;
 using MasterChefe.Mobile.ViewModel;
 using Plugin.Media;
-using Plugin.Media.Abstractions;
-using Plugin.Permissions;
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -80,6 +75,21 @@ namespace MasterChefe.Mobile.View
                 throw ex;
             }
 
+        }
+
+        private async void btnIngredientes_Clicked(object sender, EventArgs e)
+        {
+            var id = lblId.Text == "" ? 0 : Convert.ToInt32(lblId.Text);
+            IngredientsViewModel model = new IngredientsViewModel(id);
+
+            if(model.Model.Count == 0)
+            {
+                CadastroIngredienteViewModel viewModel = new CadastroIngredienteViewModel(id) { };
+                await App.Current.MainPage.Navigation.PushAsync(new CadastroIngredienteView(viewModel));
+            }
+
+            else
+            await App.Current.MainPage.Navigation.PushAsync(new IngredientsDetalheView(model));
         }
 
         private void btnExcluir_Clicked(object sender, System.EventArgs e)

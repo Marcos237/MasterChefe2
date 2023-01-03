@@ -1,11 +1,6 @@
-﻿using MasterChefe.Mobile.Initillizer;
-using MasterChefe.Mobile.Interface;
-using MasterChefe.Mobile.Model;
-using MasterChefe.Mobile.Services;
+﻿using MasterChefe.Mobile.Model;
 using MasterChefe.Mobile.View;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -42,6 +37,7 @@ namespace MasterChefe.Mobile.ViewModel
             var view = new AtualizaRecipeViewModel(d);
             await App.Current.MainPage.Navigation.PushAsync(new AtualizaRecipeView(view));
         });
+
 
         public ICommand OpenDetalheCommand => new Command<RecipeModel>(async (RecipeModel d) =>
         {

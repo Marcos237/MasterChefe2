@@ -19,6 +19,10 @@
                         <Editor Text="{Binding Model.WayOfPrepare}" x:Name="edModoPreparo" Margin="10,0,0,10" Style="{StaticResource EntryForm}"/>
 
 
+                    <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">
+                        <Label Text="Ingredientes" Style="{StaticResource TeamNameLabel}"/>
+                    </StackLayout>
+
                     <StackLayout >
 
                         <Image x:Name="imgReceita"></Image>
@@ -29,6 +33,7 @@
                         <Button Text="UpLoad" Margin="10,10,10,10" BackgroundColor="Green" x:Name="btnUpLoad" Clicked="btnUpLoad_Clicked"/>
                         <Button Text="Salvar" Margin="10,10,10,10"  x:Name="btnSalvar" Clicked="btnSalvar_Clicked"/>
                         <Button Text="Excluir" Margin="10,10,10,10" BackgroundColor="Red" x:Name="btnExcluir" Clicked="btnExcluir_Clicked"/>
+                        <Button Text="Ingredientes" Margin="10,10,10,10" BackgroundColor="Gray" x:Name="btnIngredientes" Clicked="btnIngredientes_Clicked"/>
                     </StackLayout>
                 </StackLayout>
             </Grid>

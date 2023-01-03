@@ -14,11 +14,13 @@ namespace MasterChefe.Mobile.ViewModel
     {
         public IRecipeService recipeService;
         public IImagemService imageService;
+        public IIngredientesService ingredientesService;
         public BaseViewModel()
         {
             var initializer = new ContainerInitializer();
             recipeService = initializer.recipeService;
             imageService = initializer.imagemService;
+            ingredientesService= initializer.ingredientesService;
         }
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public bool IsNotBusy { get => !isBusy; }
