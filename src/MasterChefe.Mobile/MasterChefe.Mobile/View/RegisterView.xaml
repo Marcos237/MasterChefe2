@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Padding="3">
 
-            <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email" 
+            <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Usuário" 
                    HeightRequest="40" 
                    Keyboard="Email"
                    TextColor="Black"/>
