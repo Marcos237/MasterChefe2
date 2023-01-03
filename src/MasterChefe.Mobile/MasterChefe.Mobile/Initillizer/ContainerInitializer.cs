@@ -10,6 +10,8 @@ namespace MasterChefe.Mobile.Initillizer
         public  IRecipeService recipeService { get; set; }
         public  IImagemService imagemService { get; set; }
         public  IIngredientesService ingredientesService { get; set; }
+        public IUserService UserService { get; set; }
+
         public ContainerInitializer()
         {
             InicializarContainers();
@@ -22,11 +24,13 @@ namespace MasterChefe.Mobile.Initillizer
             container.Register<IRecipeService, RecipeService>(Lifestyle.Transient);
             container.Register<IImagemService, ImagemService>(Lifestyle.Transient);
             container.Register<IIngredientesService, IngredienteService>(Lifestyle.Transient);
+            container.Register<IUserService, UserService>(Lifestyle.Transient);
             container.Verify();
             service = container.GetInstance<IConnectionService>();
             recipeService = container.GetInstance<IRecipeService>();
             imagemService = container.GetInstance<IImagemService>();
             ingredientesService = container.GetInstance<IIngredientesService>();
+            UserService = container.GetInstance<IUserService>();
         }
     }
 }

@@ -1,18 +1,27 @@
-﻿using System;
+﻿using MasterChefe.Mobile.Initillizer;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using MasterChefe.Mobile.Interface;
 using Xamarin.Forms;
 
 namespace MasterChefe.Mobile.Model
 {
     public class RegisterModel : INotifyPropertyChanged
     {
+        private readonly IUserService _userService;
+
         public RegisterModel()
         {
+            var initializer = new ContainerInitializer();
+            _userService = initializer.UserService;
             SubmitCommand = new Command(OnSubmit);
             LoginCommand = new Command(OnLogin);
         }
         public Action InvalidPasswordNotification;
+        public Action ExistingUserNotification;
+        public Action CreatedUserNotification;
+        public Action ErrorCreatingUserNotification;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public ICommand SubmitCommand { protected set; get; }
@@ -40,6 +49,7 @@ namespace MasterChefe.Mobile.Model
         }
 
         private string _confirmPassword;
+
         public string ConfirmPassword
         {
             get => _confirmPassword;
@@ -58,9 +68,36 @@ namespace MasterChefe.Mobile.Model
                 this.Email = string.Empty;
                 this.Password = string.Empty;
                 this.ConfirmPassword = string.Empty;
-
                 return;
             }
+
+            if (_userService.VerifyLogin(_email, _password))
+            {
+                ExistingUserNotification();
+                this.Email = string.Empty;
+                this.Password = string.Empty;
+                this.ConfirmPassword = string.Empty;
+                return;
+
+            }
+
+            var created = _userService.CreateNewUser(_email, _password);
+
+            if (created)
+            {
+                CreatedUserNotification();
+                await App.Current.MainPage.Navigation.PopAsync(true);
+            }
+
+            else
+            {
+                ErrorCreatingUserNotification();
+                this.Email = string.Empty;
+                this.Password = string.Empty;
+                this.ConfirmPassword = string.Empty;
+                return;
+            }
+
 
         }
 

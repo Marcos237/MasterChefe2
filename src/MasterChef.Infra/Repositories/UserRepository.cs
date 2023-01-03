@@ -24,7 +24,6 @@ namespace MasterChef.Infra.Repositories
 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
-
         }
 
         public async Task<IList<User>> GetAll()

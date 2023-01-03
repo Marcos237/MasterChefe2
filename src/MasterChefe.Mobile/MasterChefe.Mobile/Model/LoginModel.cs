@@ -1,15 +1,23 @@
-﻿using MasterChefe.Mobile.View;
+﻿using MasterChefe.Mobile.Initillizer;
+using MasterChefe.Mobile.Services;
+using MasterChefe.Mobile.View;
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using MasterChefe.Mobile.Interface;
 using Xamarin.Forms;
 
 namespace MasterChefe.Mobile.Model
 {
     public class LoginModel : INotifyPropertyChanged
     {
+        private readonly IUserService _userService;
+
         public LoginModel()
         {
+            var initializer = new ContainerInitializer();
+            _userService = initializer.UserService;
+
             SubmitCommand = new Command(OnSubmit);
             RegisterCommand = new Command(OnRegister);
         }
@@ -44,7 +52,7 @@ namespace MasterChefe.Mobile.Model
 
         public async void OnSubmit()
         {
-            if (_email != "a" || _password != "a")
+            if (!_userService.VerifyLogin(_email, _password))
             {
                 InvalidLoginNotification();
                 this.Email = string.Empty;

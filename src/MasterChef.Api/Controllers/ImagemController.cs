@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 
 
-
 namespace MasterChef.Api.Controllers
 {
 
