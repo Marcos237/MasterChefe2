@@ -23,7 +23,7 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
 
-                                <Grid Margin="20,20,20,0" RowSpacing="0" ColumnSpacing="0">
+                                <Grid Margin="20,20,0,0" RowSpacing="0" ColumnSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="AUTO"/>
                                         <ColumnDefinition Width="*"/>
