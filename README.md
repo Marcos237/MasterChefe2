@@ -37,7 +37,9 @@ Definir o banco usado para inicialização do projeto:
 2. Depois de logado, pode-se usar o menu lateral a qualquer momento para selecionar a visualização / cadastro de receitas
 ![Menu Lateral](docs/imgs/Mobile/menu.png "Menu Lateral")
 
+
 3. No App, podemos ver a listagem de receitas
+
 ![Listagem de receitas](docs/imgs/Mobile/lista-receitas.png "Listagem de receitas")
 
 4. Caso queira se desconectar de sua conta de usuário, na parte inferior do menu existe o botão *"Desconectar"*, que ao ser pressionado fará o logoff do usuário, voltando o sistema para a página inicial.
